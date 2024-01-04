@@ -95,18 +95,13 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="XPACE.Google.ARCore" Version="1.41.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
 	  <PackageReference Include="JavaGl.Obj">
 	    <Version>0.4.0.1</Version>
 	  </PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="ArCoreBindings">
-	    <HintPath>..\..\ArCoreBindings\ArCoreBindings\bin\Debug\net8.0-android\ArCoreBindings.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 
 </Project>
