@@ -18,12 +18,13 @@ namespace ArMauiApp.Controls
         protected override ARSceneView CreatePlatformView()
         {
             var view = new ARSceneView(Context);
-            var url = "https://sceneview.github.io/assets/models/DamagedHelmet.glb";
+            var url = "https://github.com/mlxyz/hello-ar-maui/raw/working-sceneview/ArMauiApp/Resources/Raw/bird.glb";
             var resourceResolver = new ResourceResolverFunction1(url);
-            LoadModelInstance(view.ModelLoader, url, resourceResolver).ContinueWith(model =>
+            LoadModelInstance(view.ModelLoader, url, resourceResolver).ContinueWith(task =>
             {
+                var model = task.Result;
                 view.PlaneRenderer.Enabled = true;
-                view.OnSessionUpdated = new OnSessionUpdatedImpl(view, model.Result);
+                view.OnSessionUpdated = new OnSessionUpdatedImpl(view, task.Result);
             });
             
             return view;
@@ -119,7 +120,11 @@ namespace ArMauiApp.Controls
                 if (plane != null)
                 {
                     var anchor = plane.CreateAnchor(plane.CenterPose);
-                    var modelNode = new ModelNode(model, true, new Java.Lang.Float(1), new Float3(0, -0.5f, 0));
+                    var modelNode = new ModelNode(model, false, new Java.Lang.Float(1), new Float3(0, -0.5f, 0));
+                    for(var i =0; i<modelNode.AnimationCount; i++)
+                    {
+                        modelNode.PlayAnimation(i, true);
+                    }
                     var anchorNode = new AnchorNode(view.Engine, anchor, null, null, null, null);
                     anchorNode.AddChildNode(modelNode);
                     view.AddChildNode(anchorNode);
