@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 # if ANDROID
-using PlatformView = ArMauiApp.Controls.CustomGLSurfaceView;
+using PlatformView = IO.Github.Sceneview.AR.ARSceneView;
 # else
 using PlatformView = System.Object;
 #endif
@@ -19,6 +19,7 @@ namespace ArMauiApp.Controls
 
         public static CommandMapper<ArView, ArViewHandler> CommandMapper = new(ViewCommandMapper)
         {
+            ["Start"] =Start
         };
         public ArViewHandler() : base(PropertyMapper, CommandMapper)
         {
