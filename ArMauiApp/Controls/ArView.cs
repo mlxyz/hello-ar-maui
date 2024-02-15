@@ -12,6 +12,6 @@ public class ArView : View
     protected override void OnHandlerChanged()
     {
         base.OnHandlerChanged();
-        Task.Delay(3000).ContinueWith(t => Handler.Invoke("Start"));
+        Task.Delay(15000).ContinueWith(t => Handler.Invoke("Start"));
     }
 }
